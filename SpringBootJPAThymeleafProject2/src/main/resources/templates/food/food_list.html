@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<th:block>
+<div class="wrapper row3">
+  <main class="container clear"> 
+  	<div class=jumbotron>
+  		<h3 class="text-center" th:text="${cvo.title}"></h3>
+		<h4 class="text-center" th:text="${cvo.subject}"></h4>
+  	</div>
+  </main>
+</div>
+</th:block>
+</body>
+</html>
