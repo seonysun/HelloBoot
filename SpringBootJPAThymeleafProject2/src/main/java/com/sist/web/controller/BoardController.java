@@ -37,6 +37,11 @@ public class BoardController {
 		int rowsize=10;
 		int start=rowsize*(curpage-1);
 		List<BoardEntity> list=dao.boardListData(start);
+		for(BoardEntity vo:list) {
+			String s=vo.getRegdate();
+	 		String[] ss=s.split(" ");
+	 		vo.setRegdate(ss[0]);
+	 	}
 		model.addAttribute("list", list);
 		
 		model.addAttribute("main_html", "board/board_list");
