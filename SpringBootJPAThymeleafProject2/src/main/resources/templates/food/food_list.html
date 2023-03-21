@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -8,15 +8,45 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<th:block>
 <div class="wrapper row3">
   <main class="container clear"> 
   	<div class=jumbotron>
   		<h3 class="text-center" th:text="${cvo.title}"></h3>
 		<h4 class="text-center" th:text="${cvo.subject}"></h4>
   	</div>
+  	<div class=row>
+  		<table class="table">
+		  <tr>
+		  	<td>
+				<table class="table" th:each="vo:${list}">
+				  <tr>
+				  	<td width=30% class="text-center" rowspan="4">
+				  	  <a th:href="@{/food/food_detail(fno=${vo.fno})}">
+				  		<img th:src="${vo.poster}" style="width: 200px" class="img-rounded">
+				  	  </a>
+				  	</td>
+				  	<td width=70%>
+				  		<a th:href="@{/food/food_detail(fno=${vo.fno})}">
+				  			<h3 th:text="${vo.name}" style="display:inline;float:left"></h3>
+				  		</a>
+				  		<h3 th:text="${vo.score}" style="color:orange;display:inline;float:left"></h3>
+				  	</td>
+				  </tr>
+				  <tr>
+				  	<td width=70% th:text="${vo.address}"></td>
+				  </tr>
+				  <tr>
+				  	<td width=70% th:text="${vo.tel}"></td>
+				  </tr>
+				  <tr>
+				  	<td width=70% th:text="${vo.type}"></td>
+				  </tr>
+				</table>
+		  	</td>
+		  </tr>
+		</table>
+  	</div>
   </main>
 </div>
-</th:block>
 </body>
 </html>

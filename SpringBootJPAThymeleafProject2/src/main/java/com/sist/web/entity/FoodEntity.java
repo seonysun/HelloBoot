@@ -14,6 +14,7 @@ import lombok.Setter;
 public class FoodEntity {
 	@Id
 	private int fno;
+	
 	private int cno,jjim_count,like_count,hit,good,soso,bad;
 	private String poster,name,address,tel,type,price,parking,time,menu;
 	private double score;

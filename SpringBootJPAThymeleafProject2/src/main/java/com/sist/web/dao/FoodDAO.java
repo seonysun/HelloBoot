@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FoodDAO extends JpaRepository<FoodEntity, Integer>{
 	public List<FoodEntity> findByCno(@Param("cno") Integer cno);
+	
+	public FoodEntity findByFno(@Param("fno") Integer fno);
 }
