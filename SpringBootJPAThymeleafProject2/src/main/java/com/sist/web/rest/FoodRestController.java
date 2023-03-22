@@ -70,4 +70,13 @@ public class FoodRestController {
 		}
 		return list;
 	}
+	
+	@GetMapping("food_detail_react")
+	public FoodEntity foodDetail(int fno) {
+		FoodEntity vo=fdao.findByFno(fno);
+		String addr1=vo.getAddress();
+		addr1=addr1.substring(0, addr1.lastIndexOf("지"));
+		vo.setAddress(addr1);
+		return vo;
+	}
 }
