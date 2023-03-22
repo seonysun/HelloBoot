@@ -21,4 +21,8 @@ public interface FoodLocationDAO extends JpaRepository<FoodLocationEntity, Integ
 								//1개 입력할 때는 Param 생략 가능
 	
 	public FoodLocationEntity findByFno(@Param("fno") Integer fno);
+
+	@Query(value = "SELECT * FROM food_location "
+			+ "ORDER BY fno LIMIT :start,20", nativeQuery = true)
+	public List<FoodLocationEntity> locationData(@Param("start") Integer start);
 }
