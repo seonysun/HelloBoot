@@ -1,0 +1,24 @@
+package com.sist.web.dao;
+import java.util.*;
+import com.sist.web.entity.*;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface JejuFoodDAO extends JpaRepository<JejuFoodEntity, Integer>{
+	@Query(value = "SELECT * FROM jeju_food "
+			+ "LIMIT 0,6", nativeQuery = true)
+	public List<JejuFoodEntity> jejuFoodTop6Data();
+	
+	@Query(value = "SELECT * FROM jeju_food "
+			+ "ORDER BY no LIMIT :start,20", nativeQuery = true)
+	public List<JejuFoodEntity> jejuFoodListData(@Param("start") Integer start);
+	
+	@Query(value = "SELECT CEIL(COUNT(*)/20.0) FROM jeju_food", nativeQuery = true)
+	public int jejuFoodTotalPage();
+	
+	public JejuFoodEntity findByNo(@Param("no") Integer no);
+}
