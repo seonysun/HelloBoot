@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class JejuPageVO {
+public class PageVO {
 	private int curpage;
 	private int totalpage;
 	private int startpage;

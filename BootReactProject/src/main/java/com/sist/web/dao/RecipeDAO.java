@@ -16,4 +16,6 @@ public interface RecipeDAO extends JpaRepository<RecipeEntity, Integer>{
 	
 	@Query(value = "SELECT CEIL(COUNT(*)/20.0) FROM recipe", nativeQuery = true)
 	public int recipeTotalPage();
+	
+	public RecipeEntity findByNo(@Param("no") Integer no);
 }

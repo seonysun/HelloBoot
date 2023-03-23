@@ -32,7 +32,7 @@ public class JejuController {
 	}
 	
 	@GetMapping("jeju/food_page_react")
-	public JejuPageVO food_page_react(String page) {
+	public PageVO food_page_react(String page) {
 		if(page==null) page="1";
 		int curpage=Integer.parseInt(page);
 		int totalpage=fdao.jejuFoodTotalPage();
@@ -40,7 +40,7 @@ public class JejuController {
 		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endpage>totalpage) endpage=totalpage;
-		JejuPageVO vo=new JejuPageVO();
+		PageVO vo=new PageVO();
 		vo.setCurpage(curpage);
 		vo.setEndpage(endpage);
 		vo.setStartpage(startpage);
@@ -64,7 +64,7 @@ public class JejuController {
 	}
 
 	@GetMapping("jeju/location_page_react")
-	public JejuPageVO location_page_react(String page) {
+	public PageVO location_page_react(String page) {
 		if(page==null) page="1";
 		int curpage=Integer.parseInt(page);
 		int totalpage=ldao.jejuLocationTotalPage();
@@ -72,7 +72,7 @@ public class JejuController {
 		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endpage>totalpage) endpage=totalpage;
-		JejuPageVO vo=new JejuPageVO();
+		PageVO vo=new PageVO();
 		vo.setCurpage(curpage);
 		vo.setEndpage(endpage);
 		vo.setStartpage(startpage);
