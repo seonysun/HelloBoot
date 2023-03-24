@@ -24,7 +24,7 @@ public class WineController {
 	}
 
 	@GetMapping("wine/wine_page_react")
-	public JejuPageVO recipe_page_react(String page) {
+	public PageVO recipe_page_react(String page) {
 		if(page==null) page="1";
 		int curpage=Integer.parseInt(page);
 		int totalpage=dao.wineTotalpage();
@@ -32,7 +32,7 @@ public class WineController {
 		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endpage>totalpage) endpage=totalpage;
-		JejuPageVO vo=new JejuPageVO();
+		PageVO vo=new PageVO();
 		vo.setCurpage(curpage);
 		vo.setEndpage(endpage);
 		vo.setStartpage(startpage);
