@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface JejuFoodDAO extends JpaRepository<JejuFoodEntity, Integer>{
 	@Query(value = "SELECT * FROM jeju_food "
-			+ "LIMIT 0,6", nativeQuery = true)
-	public List<JejuFoodEntity> jejuFoodTop6Data();
+			+ "LIMIT 0,9", nativeQuery = true)
+	public List<JejuFoodEntity> jejuFoodTop9Data();
 	
 	@Query(value = "SELECT * FROM jeju_food "
 			+ "ORDER BY no LIMIT :start,20", nativeQuery = true)

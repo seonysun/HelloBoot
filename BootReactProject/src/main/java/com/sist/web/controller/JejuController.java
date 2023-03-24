@@ -1,5 +1,9 @@
 package com.sist.web.controller;
 import java.util.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import com.sist.web.dao.*;
 import com.sist.web.entity.*;
 
@@ -16,9 +20,9 @@ public class JejuController {
 	@Autowired
 	private JejuLocationDAO ldao;
 	
-	@GetMapping("jeju/food_top6")
-	public List<JejuFoodEntity> jejutop6(){
-		List<JejuFoodEntity> list=fdao.jejuFoodTop6Data();
+	@GetMapping("jeju/food_top9")
+	public List<JejuFoodEntity> jejutop9(){
+		List<JejuFoodEntity> list=fdao.jejuFoodTop9Data();
 		return list;
 	}
 	
@@ -46,6 +50,22 @@ public class JejuController {
 		vo.setStartpage(startpage);
 		vo.setTotalpage(totalpage);
 		return vo;
+	}
+	
+	@GetMapping("jeju/jeju_cookie_react")
+	public List<JejuFoodEntity> jeju_cookie(HttpServletRequest request){
+		List<JejuFoodEntity> list=new ArrayList<JejuFoodEntity>();
+		Cookie[] cookies=request.getCookies();
+		if(cookies!=null) {
+			for(int i=cookies.length-1;i>=0;i--) {
+				if(cookies[i].getName().startsWith("jeju")) {
+					String no=cookies[i].getValue();
+					JejuFoodEntity vo=fdao.findByNo(Integer.parseInt(no));
+					list.add(vo);
+				}
+			}
+		}
+		return list;
 	}
 	
 	@GetMapping("jeju/food_detail_react")

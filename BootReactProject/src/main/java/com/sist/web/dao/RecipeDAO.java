@@ -7,9 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.sist.web.entity.JejuFoodEntity;
 import com.sist.web.entity.RecipeEntity;
 @Repository
 public interface RecipeDAO extends JpaRepository<RecipeEntity, Integer>{
+	@Query(value = "SELECT * FROM recipe "
+			+ "LIMIT 0,9", nativeQuery = true)
+	public List<RecipeEntity> recipeTop9Data();
+	
 	@Query(value = "SELECT * FROM recipe "
 			+ "ORDER BY no LIMIT :start,20", nativeQuery = true)
 	public List<RecipeEntity> recipeListData(@Param("start") Integer start);

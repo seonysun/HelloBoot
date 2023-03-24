@@ -1,9 +1,6 @@
 package com.sist.web.controller;
 import java.util.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-
 import com.sist.web.entity.*;
 import com.sist.web.dao.*;
 
@@ -14,29 +11,36 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
-public class RecipeController {
+public class CampingController {
 	@Autowired
-	private RecipeDAO dao;
+	private CampingDAO dao;
 	
-	@GetMapping("recipe/recipe_top9")
-	public List<RecipeEntity> recipetop9(){
-		List<RecipeEntity> list=dao.recipeTop9Data();
+	@GetMapping("camping/camping_top6")
+	public List<CampingEntity> camping_top6(){
+		List<CampingEntity> list=dao.mainCampingData();
+		for(CampingEntity vo:list) {
+			String address=vo.getAddress();
+			if(address.length()>=20) {
+				address=address.substring(0,20);
+				vo.setAddress(address);
+			}
+		}
 		return list;
 	}
 	
-	@GetMapping("recipe/list_react")
-	public List<RecipeEntity> recipeListData(String page){
-		int rowsize=20;
+	@GetMapping("camping/list_react")
+	public List<CampingEntity> campingListData(String page){
+		int rowsize=15;
 		int start=rowsize*(Integer.parseInt(page)-1);
-		List<RecipeEntity> list=dao.recipeListData(start);
+		List<CampingEntity> list=dao.campingListData(start);
 		return list;
 	}
 
-	@GetMapping("recipe/recipe_page_react")
-	public PageVO recipe_page_react(String page) {
+	@GetMapping("camping/camping_page_react")
+	public PageVO camping_page_react(String page) {
 		if(page==null) page="1";
 		int curpage=Integer.parseInt(page);
-		int totalpage=dao.recipeTotalPage();
+		int totalpage=dao.campingTotalpage();
 		final int BLOCK=10;
 		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
@@ -46,6 +50,12 @@ public class RecipeController {
 		vo.setEndpage(endpage);
 		vo.setStartpage(startpage);
 		vo.setTotalpage(totalpage);
+		return vo;
+	}
+	
+	@GetMapping("camping/camping_detail_react")
+	public CampingEntity camping_detail_react(int cno) {
+		CampingEntity vo=dao.findByCno(cno);
 		return vo;
 	}
 }
