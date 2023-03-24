@@ -85,4 +85,28 @@ public class JejuController {
 		JejuLocationEntity vo=ldao.findByNo(no);
 		return vo;
 	}
+	
+	@GetMapping("jeju/food_find_react")
+	public List<JejuFindVO> food_find_react(String page, String title){
+		List<JejuFindVO> list=new ArrayList<JejuFindVO>();
+		if(page==null) page="1";
+		int curpage=Integer.parseInt(page);
+		int start=12*(curpage-1);
+		List<JejuFoodEntity> fList=fdao.jejuFindData(title, start);
+		int totalpage=fdao.jejuFindTotalPage(title);
+		int i=0;
+		for(JejuFoodEntity fvo:fList) {
+			JejuFindVO vo=new JejuFindVO(); //필요한 데이터만 선별해서 저장
+			vo.setNo(fvo.getNo());
+			vo.setPoster(fvo.getPoster());
+			vo.setTitle(fvo.getTitle());
+			if(i==0) {
+				vo.setCurpage(curpage);
+				vo.setTotalpage(totalpage);
+			}
+			list.add(vo);
+			i++;
+		}
+		return list;
+	}
 }
