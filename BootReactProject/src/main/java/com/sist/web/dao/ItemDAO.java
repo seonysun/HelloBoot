@@ -10,11 +10,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ItemDAO extends JpaRepository<ItemEntity, Integer>{
 	@Query(value = "SELECT * FROM item "
-			+ "ORDER BY ino LIMIT :start,8", nativeQuery = true)
-	public List<ItemEntity> snackListData(@Param("start") Integer start);
+			+ "ORDER BY ino LIMIT 0,4", nativeQuery = true)
+	public List<ItemEntity> mainItemData();
+	
+	@Query(value = "SELECT * FROM item "
+			+ "ORDER BY ino LIMIT 0,3", nativeQuery = true)
+	public List<ItemEntity> itemListData();
 	
 	@Query(value = "SELECT CEIL(COUNT(*)/8.0) FROM item", nativeQuery = true)
-	public int snackTotalpage();
+	public int itemTotalpage();
 	
-	public ItemEntity findByINo(@Param("ino") Integer ino);
+	public ItemEntity findByIno(@Param("ino") Integer ino);
 }

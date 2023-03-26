@@ -21,4 +21,13 @@ public interface CampingDAO extends JpaRepository<CampingEntity, Integer>{
 	public int campingTotalpage();
 	
 	public CampingEntity findByCno(@Param("cno") Integer cno);
+	
+	@Query(value = "SELECT * FROM camping "
+			+ "WHERE address LIKE CONCAT('%',:addr,'%') "
+			+ "LIMIT :start,15", nativeQuery = true)
+	public List<CampingEntity> campingFindData(@Param("addr") String addr, @Param("start") Integer start);
+	
+	@Query(value = "SELECT CEIL(COUNT(*)/15.0) FROM camping "
+			+ "WHERE address LIKE CONCAT('%',:addr,'%')", nativeQuery = true)
+	public int campingFindTotalPage(@Param("addr") String addr);
 }

@@ -52,21 +52,21 @@ public class JejuController {
 		return vo;
 	}
 	
-	@GetMapping("jeju/jeju_cookie_react")
-	public List<JejuFoodEntity> jeju_cookie(HttpServletRequest request){
-		List<JejuFoodEntity> list=new ArrayList<JejuFoodEntity>();
-		Cookie[] cookies=request.getCookies();
-		if(cookies!=null) {
-			for(int i=cookies.length-1;i>=0;i--) {
-				if(cookies[i].getName().startsWith("jeju")) {
-					String no=cookies[i].getValue();
-					JejuFoodEntity vo=fdao.findByNo(Integer.parseInt(no));
-					list.add(vo);
-				}
-			}
-		}
-		return list;
-	}
+//	@GetMapping("jeju/jeju_cookie_react")
+//	public List<JejuFoodEntity> jeju_cookie(HttpServletRequest request){
+//		List<JejuFoodEntity> list=new ArrayList<JejuFoodEntity>();
+//		Cookie[] cookies=request.getCookies();
+//		if(cookies!=null) {
+//			for(int i=cookies.length-1;i>=0;i--) {
+//				if(cookies[i].getName().startsWith("jeju")) {
+//					String no=cookies[i].getValue();
+//					JejuFoodEntity vo=fdao.findByNo(Integer.parseInt(no));
+//					list.add(vo);
+//				}
+//			}
+//		}
+//		return list;
+//	}
 	
 	@GetMapping("jeju/food_detail_react")
 	public JejuFoodEntity food_detail_react(int no) {

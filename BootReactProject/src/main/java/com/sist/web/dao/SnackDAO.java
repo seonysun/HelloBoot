@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SnackDAO extends JpaRepository<SnackEntity, Integer>{
 	@Query(value = "SELECT * FROM snack "
+			+ "ORDER BY no LIMIT 0,4", nativeQuery = true)
+	public List<SnackEntity> mainSnackData();
+	
+	@Query(value = "SELECT * FROM snack "
 			+ "ORDER BY no LIMIT :start,12", nativeQuery = true)
 	public List<SnackEntity> snackListData(@Param("start") Integer start);
 	
