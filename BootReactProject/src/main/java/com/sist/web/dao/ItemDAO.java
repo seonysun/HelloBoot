@@ -14,7 +14,7 @@ public interface ItemDAO extends JpaRepository<ItemEntity, Integer>{
 	public List<ItemEntity> mainItemData();
 	
 	@Query(value = "SELECT * FROM item "
-			+ "ORDER BY ino LIMIT 0,3", nativeQuery = true)
+			+ "ORDER BY ino LIMIT 120,3", nativeQuery = true)
 	public List<ItemEntity> itemListData();
 	
 	@Query(value = "SELECT CEIL(COUNT(*)/8.0) FROM item", nativeQuery = true)

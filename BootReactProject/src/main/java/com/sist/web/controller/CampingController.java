@@ -100,6 +100,11 @@ public class CampingController {
 	@GetMapping("item/item_list_react")
 	public List<ItemEntity> item_list_react(){
 		List<ItemEntity> list=idao.itemListData();
+		for(ItemEntity vo:list) {
+			String pic=vo.getImage();
+			pic=pic.substring(0, pic.indexOf(","));
+			vo.setImage(pic);
+		}
 		return list;
 	}
 }
